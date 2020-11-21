@@ -8,3 +8,6 @@ def crearProducto():
     precioVenta = float(input('Por favor, ingresarprecio de venta para el producto: '))
     nuevoProducto = {"nombre":nombre, "precioCompra": precioCompra, "precioVenta":precioVenta} 
     productos.append(nuevoProducto)
+
+crearProducto()
+print(productos)
