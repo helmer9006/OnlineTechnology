@@ -35,16 +35,26 @@ productos = {
             "precioCompra": 145000,
             "precioVenta": 188500
         },
-        "dvr 8 Canales": {
-            "codigo": 'dvr1',
+        "dvr 10 Canales": {
+            "codigo": 'dvr2',
             "precioCompra": 185000,
             "precioVenta": 240500
         },
-        "dvr 32 Canales": {
-            "codigo": 'dvr1',
+        "dvr 12 Canales": {
+            "codigo": 'dvr3',
             "precioCompra": 215000,
             "precioVenta": 279500
-        }
+        },
+        "dvr 14 Canales": {
+            "codigo": 'dvr4',
+            "precioCompra": 215000,
+            "precioVenta": 279500
+        },
+       "dvr 32 Canales": {
+            "codigo": 'dvr5',
+            "precioCompra": 215000,
+            "precioVenta": 279500
+        }                        
     }
 }
 print(productos)
