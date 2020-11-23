@@ -7,6 +7,7 @@ print("""
     1 - CREAR PRODUCTO
     2 - VENDER PRODUTO
     3 - CALCULAR PERDIDAS O GANANCIAS
+    4 - MODIFICAR DETALLES DE PRODUCTOS
     4 - SALIR
 
     A continuación debe digitar el numero de la operación a realizar...
@@ -70,7 +71,7 @@ def venderProducto(productos):
                 vsubfactura = valorTotal + vsubfactura
                 factura.append(
                     {"codigo": codigoProducto, "cantidad": cantidad, "valorUnitario": iventa['precioVenta'], "valorUnitarioC": iventa['precioCompra'], "valorTotal": valorTotal})
-                print(factura)   
+                #print(factura)   
                 busqueda=1
         if  busqueda == 0:
             print("producto con código ", codigoProducto, " no existe.")     
@@ -96,6 +97,27 @@ def calculabalance(facturas):
     return tbalance
 # endregion
 
+# region Modificar Productos en el diccionario
+def ModificarProducto(productos):
+    while True:
+        busqueda=0
+        codigoProducto = str(input("Ingresar código del producto a Modificar: "))
+        for ibusqueda in productos:
+            if ibusqueda['codigo']  == codigoProducto:
+               print (ibusqueda)
+               ibusqueda['nombre'] = str(input("Ingrese nombre del producto : "))
+               ibusqueda["precioCompra"] = float(input('Ingresar precio de compra del producto: '))
+               ibusqueda["precioVenta"] = float(input('Ingresar precio de venta del producto: '))
+               print("Cambio guardado", ibusqueda)   
+               busqueda=1
+        if  busqueda == 0:
+            print("producto con código ", codigoProducto, " no existe.")     
+        opcion = int(input("Deseas modificar otro producto: 1. Si , 2. No : "))
+        if opcion == 2:
+            break
+    return productos
+# endregion
+
 # region SWITCH DE OPERACIONES
 while True:
     opcion = int(input("\nIngresar número según operación a realizar : "))
@@ -104,13 +126,14 @@ while True:
     elif(opcion == 2):
         facturas.append(venderProducto(productos))
     elif(opcion == 3):
-        Balance=calculabalance(facturas)
+        Balance = calculabalance(facturas)
         print("Balance de Compras vs Ventas ", Balance)
     elif(opcion == 4):
+        ProductoModif = ModificarProducto(productos)  
+        print("Productos Modificados ", ProductoModif)  
+    elif(opcion == 5):
         print("Has Finalizado.. Gracias.")
         break
     else:
         print('Opción invalida')
-print(productos)
-print(facturas)
 # endregion
