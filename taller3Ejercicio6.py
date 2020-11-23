@@ -58,6 +58,32 @@ def crearProducto():
     return nuevoProducto
 # endregion
 
+# region MODIFICAR PRODUCTOS
+
+def ModificarProducto(productos):
+    while True:
+        busqueda = 0
+        codigoProducto = str(
+            input("Ingresar código del producto a Modificar: "))
+        for ibusqueda in productos:
+            if ibusqueda['codigo'] == codigoProducto:
+                print(ibusqueda)
+                ibusqueda['nombre'] = str(
+                    input("Ingrese nombre del producto : "))
+                ibusqueda["precioCompra"] = float(
+                    input('Ingresar precio de compra del producto: '))
+                ibusqueda["precioVenta"] = float(
+                    input('Ingresar precio de venta del producto: '))
+                print("Cambio guardado", ibusqueda)
+                busqueda = 1
+        if busqueda == 0:
+            print("producto con código ", codigoProducto, " no existe.")
+        opcion = int(input("Deseas modificar otro producto: 1. Si , 2. No : "))
+        if opcion == 2:
+            break
+    return productos
+# endregion
+
 # region ELIMINAR PRODUCTO
 
 
@@ -126,38 +152,11 @@ def calculabalance(facturas):
     return tbalance
 # endregion
 
-# region MODIFICAR PRODUCTOS
-
-
-def ModificarProducto(productos):
-    while True:
-        busqueda = 0
-        codigoProducto = str(
-            input("Ingresar código del producto a Modificar: "))
-        for ibusqueda in productos:
-            if ibusqueda['codigo'] == codigoProducto:
-                print(ibusqueda)
-                ibusqueda['nombre'] = str(
-                    input("Ingrese nombre del producto : "))
-                ibusqueda["precioCompra"] = float(
-                    input('Ingresar precio de compra del producto: '))
-                ibusqueda["precioVenta"] = float(
-                    input('Ingresar precio de venta del producto: '))
-                print("Cambio guardado", ibusqueda)
-                busqueda = 1
-        if busqueda == 0:
-            print("producto con código ", codigoProducto, " no existe.")
-        opcion = int(input("Deseas modificar otro producto: 1. Si , 2. No : "))
-        if opcion == 2:
-            break
-    return productos
-# endregion
-
 # region VER PRODUCTO
 def verProductos():
     cont = 1
     for producto in productos:
-        print('\nproducto # ', cont)
+        print('\nproducto # ', cont, "\n")
         for llave, valor in producto.items():
             print(llave, " ", valor)  
         cont += 1        
