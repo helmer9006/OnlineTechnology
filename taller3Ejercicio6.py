@@ -84,7 +84,7 @@ def venderProducto(productos):
     return factura
 # endregion
 
-# region CALCULA PERDIDAS O GANANCIAS
+# region CALCULA PERDIDAS O GANANCIAS DE LAS FACTURAS DEL DIA
 def calculabalance(facturas):
     vbalance = 0 
     cbalance = 0
