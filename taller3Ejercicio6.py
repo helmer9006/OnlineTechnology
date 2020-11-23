@@ -7,7 +7,7 @@ print("""
     1 - CREAR PRODUCTO
     2 - VENDER PRODUTO
     3 - CALCULAR PERDIDAS O GANANCIAS
-    0 - SALIR
+    4 - SALIR
 
     A continuación debe digitar el numero de la operación a realizar...
     """)
@@ -37,19 +37,16 @@ productos = [
 
 facturas = [
 ]
-
-balancefacturas = {}
-
 # endregion
 
 # region CREAR PRODUCTO
 def crearProducto():
-    codigo = input('Por favor, ingresar código del producto: ')
-    nombre = input('Por favor, ingresar nombre del producto: ')
+    codigo = input('Ingresar código del producto: ')
+    nombre = input('Ingresar nombre del producto: ')
     precioCompra = float(
-        input('Por favor, ingresar precio de compra del producto: '))
+        input('Ingresar precio de compra del producto: '))
     precioVenta = float(
-        input('Por favor, ingresar precio de venta para el producto: '))
+        input('Ingresar precio de venta para el producto: '))
     nuevoProducto = {"codigo": codigo, "nombre": nombre,
                      "precioCompra": precioCompra, "precioVenta": precioVenta}
     
@@ -66,7 +63,7 @@ def venderProducto(productos):
         codigoProducto = str(input("Ingresar código del producto : "))
         for iventa in productos:
             if iventa['codigo']  == codigoProducto:
-                cantidad = int(input("Ingresas la cantidad a vender : "))
+                cantidad = int(input("Ingrese cantidad : "))
                 iva = (iventa['precioVenta'] * 0.19) * cantidad
                 vtiva = vtiva + iva 
                 valorTotal = (cantidad * iventa['precioVenta'])
