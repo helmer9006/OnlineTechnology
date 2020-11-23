@@ -12,9 +12,12 @@ while Opcion==0:
   Codigo_Producto = str(input("Codigo Producto : "))
   #llamar funcion consultar en directorio de productos , traer nomobre, valor
   #con eso valores ingresarlos al directorio Dic_factura
+  Cantidad_Producto = int(input("Cantidad Producto : "))
   Nombre_Producto = str(input("Nombre Producto : "))
   Valor_Producto = int(input("Valor Producto : "))
-  Dic_factura.setdefault(Nombre_Producto,Valor_Producto)
+  Valor_producto = Valor_Producto * Cantidad_Producto
+  Dic_factura.setdefault('Nombre_Producto' : Valor_Producto, )
+  Dic_factura.setdefault
   Opcion = int(input("Deseas ingresar otro valor: 1. Si , 2. No :" ))
   if Opcion == 1:
     Opcion=0
@@ -27,3 +30,12 @@ while Opcion==0:
     print ('Valor IVA Factura 19% {}'.format(Vlr_Iva)) 
     print ('Valor Total Factura {}'.format(Valor_Total_Factura))   
     Opcion = 1
+def calculabalance(facturas):
+    ValorVentas = 0
+    ValorCompra = 0
+    for key, values in facturas.items():
+        print(key, values)
+        ValorVentas = (vbalance['cantidad'] * vbalance['valorUnitario']) + ValorVentas
+        ValorCompra = (vbalance['valorUnitarioC'] * vbalance['cantidad']) + ValorCompra                  
+    ValorBalance = ValorVentas - ValorCompra 
+    return ValorBalance
