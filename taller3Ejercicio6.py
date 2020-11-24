@@ -5,9 +5,9 @@ print("""
     ***************************************************\n
     SELECCIONAR OPERACIÓN A REALIZAR
     1 - CREAR PRODUCTO
-    2 - MODIFICAR PRODUTO
-    3 - ELIMINAR PRODUTO
-    4 - VENDER PRODUTO
+    2 - MODIFICAR PRODUCTO
+    3 - ELIMINAR PRODUCTO
+    4 - VENDER PRODUCTO
     5 - CALCULAR PERDIDAS O GANANCIAS
     6 - VER PRODUCTOS
     0 - SALIR
@@ -43,8 +43,6 @@ facturas = [
 # endregion
 
 # region CREAR PRODUCTO
-
-
 def crearProducto():
     codigo = input('Ingresar código del producto: ')
     nombre = input('Ingresar nombre del producto: ')
@@ -59,8 +57,7 @@ def crearProducto():
 # endregion
 
 # region MODIFICAR PRODUCTOS
-
-def ModificarProducto(productos):
+def modificarProducto(productos):
     while True:
         busqueda = 0
         codigoProducto = str(
@@ -68,13 +65,14 @@ def ModificarProducto(productos):
         for ibusqueda in productos:
             if ibusqueda['codigo'] == codigoProducto:
                 print(ibusqueda)
-                ibusqueda['nombre'] = str(
-                    input("Ingrese nombre del producto : "))
-                ibusqueda["precioCompra"] = float(
-                    input('Ingresar precio de compra del producto: '))
-                ibusqueda["precioVenta"] = float(
-                    input('Ingresar precio de venta del producto: '))
-                print("Cambio guardado", ibusqueda)
+                productos.remove(ibusqueda)
+                codigo = codigoProducto
+                nombre = input('Ingresar nombre del producto: ')
+                precioCompra = float(input('Ingresar precio de compra del producto: '))
+                precioVenta = float(input('Ingresar precio de venta para el producto: '))
+                nuevoProducto = {"codigo": codigo, "nombre": nombre,
+                                 "precioCompra": precioCompra, "precioVenta": precioVenta}
+                productos.append(nuevoProducto)
                 busqueda = 1
         if busqueda == 0:
             print("producto con código ", codigoProducto, " no existe.")
@@ -85,8 +83,6 @@ def ModificarProducto(productos):
 # endregion
 
 # region ELIMINAR PRODUCTO
-
-
 def eliminarProducto():
     while True:
         buscar = False
@@ -104,11 +100,9 @@ def eliminarProducto():
 # endregion
 
 # region VENDER PRODUCTOS
-
-
 def venderProducto(productos):
     factura = []
-    vtiva = 0
+    valorTotalIva = 0
     vsubfactura = 0
     while True:
         busqueda = 0
@@ -117,17 +111,17 @@ def venderProducto(productos):
             if iventa['codigo'] == codigoProducto:
                 cantidad = int(input("Ingrese cantidad : "))
                 iva = (iventa['precioVenta'] * 0.19) * cantidad
-                vtiva = vtiva + iva
+                valorTotalIva = valorTotalIva + iva
                 valorTotal = (cantidad * iventa['precioVenta'])
                 vsubfactura = valorTotal + vsubfactura
                 factura.append(
                     {
-                        "codigo": codigoProducto,
-                        "cantidad": cantidad,
-                         "valorUnitario": iventa['precioVenta'],
-                         "valorUnitarioC": iventa['precioCompra'],
-                         "valorTotal": valorTotal
-                    }
+                      "codigo": codigoProducto, 
+                      "cantidad": cantidad, 
+                      "valorUnitario": iventa['precioVenta'], 
+                      "valorUnitarioC": iventa['precioCompra'], 
+                      "valorTotal": valorTotal
+                     }
                 )
                 # print(factura)
                 busqueda = 1
@@ -135,17 +129,15 @@ def venderProducto(productos):
             print("producto con código ", codigoProducto, " no existe.")
         opcion = int(input("Deseas ingresar otro producto: 1. Si , 2. No : "))
         if opcion == 2:
-            vtfactura = vsubfactura + vtiva
+            vtfactura = vsubfactura + valorTotalIva
             break
     print("Valor Sub Total     : ", vsubfactura)
-    print("Valor IVA           : ", vtiva)
+    print("Valor IVA           : ", valorTotalIva)
     print("Valor Total a Pagar : ", vtfactura)
     return factura
 # endregion
 
 # region CALCULA PERDIDAS O GANANCIAS DE LAS FACTURAS DEL DIA
-
-
 def calculabalance(facturas):
     vbalance = 0
     cbalance = 0
@@ -175,8 +167,8 @@ while True:
     if(opcion == 1):
         productos.append(crearProducto())
     elif(opcion == 2):
-        ProductoModif = ModificarProducto(productos)
-        print("Productos Modificados ", ProductoModif)
+        productoModif = modificarProducto(productos)
+        print("Productos Modificados ", productoModif)
     elif(opcion == 3):
         eliminarProducto()
     elif(opcion == 4):
