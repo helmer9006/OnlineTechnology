@@ -46,6 +46,19 @@ facturas = [
 
 
 def crearProducto():
+    """Permite la creación de un producto.
+    Se solicita al usuario los valores para los campos: codigo, nombre, valor compra y valor venta y                
+    y se devuelven los valores en un diccionario para ser ingresados al arreglo productos.
+
+    Parametros: Ninguno
+    Ejemplo diccionario devuelto:
+
+    { "codigo": "cam1", "nombre": "camara 1", "precioCompra": 50000, "precioVenta": 80000} 
+
+    Atributos:
+    codigo: string, nombre: string, precioCompra: Float, precioVenta: Float
+
+    """
     codigo = input('Ingresar código del producto: ')
     nombre = input('Ingresar nombre del producto: ')
     precioCompra = float(
@@ -60,7 +73,21 @@ def crearProducto():
 
 # region MODIFICAR PRODUCTOS
 
+
 def ModificarProducto(productos):
+    """Permite modificar un producto, pidiendo por consola al usuario el codigo de producto a modificar 
+    y posteriormente los nuevos valores para actualizar el producto.
+
+    Se devuelve arreglo con los productos actualizados
+    parametros: Array de productos.
+
+    Ejemplo parametro productos: 
+
+    productos[{ "codigo": "cam1", "nombre": "camara 1", "precioCompra": 50000, "precioVenta": 80000} ,
+              { "codigo": "cam1", "nombre": "camara 1", "precioCompra": 50000, "precioVenta": 80000}] 
+    Atributos:
+    codigo: string, nombre: string, precioCompra: Float, precioVenta: Float
+    """
     while True:
         busqueda = 0
         codigoProducto = str(
@@ -84,7 +111,15 @@ def ModificarProducto(productos):
     return productos
 # endregion
 
+
 # region ELIMINAR PRODUCTO
+"""
+ Permite eliminar producto a partir del codigo de producto a eliminar solicitado al usuario. 
+ Elimina producto del array productos. 
+
+ Parametros: No recibe. 
+ 
+"""
 
 
 def eliminarProducto():
@@ -104,6 +139,16 @@ def eliminarProducto():
 # endregion
 
 # region VENDER PRODUCTOS
+    """Permite realizar venta de productos, pidiendo por consola al usuario el codigo de producto a vender y la cantidad.
+
+    Se devuelve arreglo con la factura realizada, que incluye los detalles de la venta
+    parametros: Array de productos.
+
+    Ejemplo array retornado: 
+
+    {"codigo": 'cam1', "cantidad": 2, "valorUnitario": 50000, "valorUnitarioC": 19000, "valorTotal": 119000})
+    
+    """
 
 
 def venderProducto(productos):
@@ -136,7 +181,19 @@ def venderProducto(productos):
     return factura
 # endregion
 
+
 # region CALCULA PERDIDAS O GANANCIAS DE LAS FACTURAS DEL DIA
+"""Funcion que nos permite calcular el balance indicativo para validar si nuestras ventas
+    generan ganancia o perdidas. 
+    Parametros: Array Facturas.
+
+    Ejemplo Array: una factura con un item:
+    facturas =[[{'codigo': 'cam1', 'cantidad': 3, 'valorUnitario': 80000, 'valorUnitarioC': 50000, 'valorTotal': 240000}]]
+    
+    Devuelve el valor del balance. 
+    se calcula restando  restando los valores de venta - valores de compra
+
+"""
 
 
 def calculabalance(facturas):
@@ -153,16 +210,42 @@ def calculabalance(facturas):
 # endregion
 
 # region VER PRODUCTO
+    """Funcion que me permite listar los productos creados
+    Devuelve diccionarios de productos, donde se identifican las llaves y sus valores. 
+    nombre producto, valor compra, valor venta y codigo.
+
+    Parametros: No recibe.
+
+    Ejemplo de impresión de productos. 
+
+    producto #  3
+
+    codigo   cam3
+    nombre   camara 3
+    precioCompra   60000
+    precioVenta   90000
+
+
+    """
+
 def verProductos():
     cont = 1
     for producto in productos:
         print('\nproducto # ', cont, "\n")
         for llave, valor in producto.items():
-            print(llave, " ", valor)  
-        cont += 1        
-# endregion 
+            print(llave, " ", valor)
+        cont += 1
+# endregion
+
 
 # region SWITCH DE OPERACIONES
+"""Condicional que permite gestionar el menu principal.
+
+    Se inicializa con un while en true, captura la opcion deseada por el usuario según
+    descripción detallada en las opciones del menu. 
+    Según el numero ingresado por el usuario se ejectuca una de las opciones del condicional.
+    Finaliza con la opcion  0.    
+"""
 while True:
     opcion = int(input("\nIngresar número según operación a realizar : "))
     if(opcion == 1):
@@ -185,3 +268,4 @@ while True:
     else:
         print('Opción invalida')
 # endregion
+
