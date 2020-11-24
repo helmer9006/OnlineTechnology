@@ -115,11 +115,12 @@ def venderProducto(productos):
                 valorTotal = (cantidad * iventa['precioVenta'])
                 vsubfactura = valorTotal + vsubfactura
                 factura.append(
-                    {"codigo": codigoProducto, 
-                     "cantidad": cantidad, 
-                     "valorUnitario": iventa['precioVenta'], 
-                     "valorUnitarioC": iventa['precioCompra'], 
-                     "valorTotal": valorTotal
+                    {
+                      "codigo": codigoProducto, 
+                      "cantidad": cantidad, 
+                      "valorUnitario": iventa['precioVenta'], 
+                      "valorUnitarioC": iventa['precioCompra'], 
+                      "valorTotal": valorTotal
                      }
                 )
                 # print(factura)
